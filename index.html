@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Campanhas — Guterres &amp; Sombrio Advogados — Maio 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:        #1B4FD8;
+      --blue-mid:    #2D65E8;
+      --blue-light:  #EEF2FF;
+      --blue-border: #C7D7FC;
+      --green:       #059669;
+      --green-light: #ECFDF5;
+      --amber:       #D97706;
+      --amber-light: #FFFBEB;
+      --red:         #DC2626;
+      --red-light:   #FEF2F2;
+      --slate-900:   #0F172A;
+      --slate-700:   #334155;
+      --slate-500:   #64748B;
+      --slate-400:   #94A3B8;
+      --slate-300:   #CBD5E1;
+      --slate-100:   #F1F5F9;
+      --white:       #FFFFFF;
+      --bg:          #F8FAFC;
+      --radius:      12px;
+      --radius-sm:   8px;
+      --meta:        #1877F2;
+      --meta-light:  #EAF1FE;
+      --meta-border: #BDD5FC;
+      --google:      #4285F4;
+      --google-light:#EAF0FE;
+      --google-border:#BDD1FC;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--slate-700);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 72px 0; }
+    section:nth-child(even) { background: var(--white); }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-size: clamp(22px, 4vw, 28px); font-weight: 700; color: var(--slate-900); line-height: 1.25; margin-bottom: 8px; }
+    .section-sub { font-size: 16px; color: var(--slate-500); max-width: 620px; margin-bottom: 48px; line-height: 1.6; }
+
+    /* ── HERO ── */
+    .hero { background: var(--white); border-bottom: 1px solid var(--slate-300); padding: 80px 0 72px; text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); border-radius: 999px; padding: 6px 18px; font-size: 13px; font-weight: 600; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(30px, 6vw, 46px); font-weight: 700; color: var(--slate-900); line-height: 1.15; letter-spacing: -.02em; margin-bottom: 20px; }
+    .hero-sub { font-size: 17px; color: var(--slate-500); max-width: 560px; margin: 0 auto 44px; line-height: 1.65; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .hero-meta-item strong { font-size: 30px; font-weight: 700; color: var(--blue); line-height: 1; }
+    .hero-meta-item span { font-size: 13px; color: var(--slate-500); }
+    .hero-divider { width: 1px; height: 44px; background: var(--slate-300); }
+
+    /* ── PLATFORM CARDS ── */
+    .campaign-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .campaign-card { background: var(--white); border: 1px solid var(--slate-300); border-top: 4px solid var(--blue); border-radius: var(--radius); padding: 28px; }
+    .campaign-card.meta   { border-top-color: var(--meta); }
+    .campaign-card.google { border-top-color: var(--google); }
+    .campaign-card-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; border-radius: 5px; padding: 4px 10px; margin-bottom: 14px; }
+    .campaign-card.meta   .campaign-card-tag { background: var(--meta-light);   color: var(--meta); }
+    .campaign-card.google .campaign-card-tag { background: var(--google-light); color: var(--google); }
+    .campaign-card h3 { font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 22px; line-height: 1.3; }
+    .campaign-row { display: flex; flex-direction: column; gap: 14px; }
+    .campaign-item { display: flex; gap: 12px; align-items: flex-start; }
+    .campaign-item-icon { width: 32px; height: 32px; background: var(--slate-100); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .campaign-item-icon svg { width: 15px; height: 15px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .campaign-card.meta   .campaign-item-icon svg { stroke: var(--meta); }
+    .campaign-card.google .campaign-item-icon svg { stroke: var(--google); }
+    .campaign-item-label { font-size: 11px; font-weight: 600; color: var(--slate-500); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .campaign-item-value { font-size: 14px; font-weight: 600; color: var(--slate-900); line-height: 1.35; }
+    .campaign-item-value small { font-weight: 400; color: var(--slate-500); font-size: 12px; }
+
+    /* ── STEPS ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 24px; left: calc(12.5% + 18px); right: calc(12.5% + 18px); height: 2px; background: var(--blue-border); z-index: 0; }
+    .step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 10px; position: relative; z-index: 1; }
+    .step-num { width: 48px; height: 48px; background: var(--blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-bottom: 16px; flex-shrink: 0; }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; }
+    .step-desc { font-size: 13px; color: var(--slate-500); line-height: 1.55; }
+
+    /* ── AUDIENCE ── */
+    .audience-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+    .demo-section-title { font-size: 15px; font-weight: 700; color: var(--slate-900); margin-bottom: 20px; }
+    .demo-bars { display: flex; flex-direction: column; gap: 12px; }
+    .demo-bar-row { display: flex; align-items: center; gap: 10px; }
+    .demo-bar-label { font-size: 12px; font-weight: 600; color: var(--slate-700); width: 56px; flex-shrink: 0; text-align: right; }
+    .demo-bar-track { flex: 1; height: 8px; background: var(--slate-100); border-radius: 99px; overflow: hidden; }
+    .demo-bar-fill { height: 100%; background: var(--blue); border-radius: 99px; }
+    .demo-bar-pct { font-size: 12px; font-weight: 700; color: var(--blue); width: 40px; flex-shrink: 0; }
+    .demo-note { font-size: 13px; color: var(--slate-500); margin-top: 18px; line-height: 1.6; padding: 14px; background: var(--blue-light); border-radius: var(--radius-sm); border-left: 3px solid var(--blue); }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat-card { border: 1px solid var(--slate-300); border-radius: var(--radius-sm); padding: 18px; text-align: center; background: var(--white); }
+    .stat-card.hi { background: var(--blue-light); border-color: var(--blue-border); }
+    .stat-card strong { display: block; font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; }
+    .stat-card span { font-size: 12px; color: var(--slate-500); margin-top: 5px; display: block; line-height: 1.4; }
+
+    /* ── GOOGLE MOCKUP ── */
+    .google-mockup { border: 1px solid var(--slate-300); border-radius: var(--radius); padding: 20px 24px; background: var(--white); }
+    .gm-ad-badge { display: inline-block; border: 1px solid #006621; color: #006621; font-size: 11px; font-weight: 600; padding: 1px 5px; border-radius: 3px; margin-bottom: 4px; }
+    .gm-url { font-size: 14px; color: #006621; margin-bottom: 4px; }
+    .gm-title { font-size: 18px; color: #1a0dab; font-weight: 400; line-height: 1.3; cursor: pointer; margin-bottom: 6px; }
+    .gm-desc { font-size: 14px; color: var(--slate-700); line-height: 1.55; }
+    .gm-sitelinks { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+    .gm-sitelink { font-size: 14px; color: #1a0dab; }
+
+    /* ── RESULTS TABLE ── */
+    .projection-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--slate-300); }
+    .projection-table thead { background: var(--blue); color: var(--white); }
+    .projection-table thead th { padding: 14px 18px; text-align: left; font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+    .projection-table tbody tr { border-bottom: 1px solid var(--slate-300); }
+    .projection-table tbody tr:last-child { background: var(--slate-900); border-bottom: none; }
+    .projection-table tbody tr:nth-child(odd):not(:last-child) { background: var(--white); }
+    .projection-table tbody tr:nth-child(even):not(:last-child) { background: var(--blue-light); }
+    .projection-table td { padding: 14px 18px; font-size: 14px; vertical-align: middle; }
+    .total-row td { color: var(--slate-100); }
+    .total-row td:first-child { font-weight: 700; color: var(--white); }
+    .val-green { color: var(--green); font-weight: 700; }
+    .val-blue  { color: var(--blue);  font-weight: 700; }
+    .val-amber { color: var(--amber); font-weight: 600; font-style: italic; font-size: 13px; }
+    .val-total-green { color: #4ADE80; font-weight: 700; }
+    .val-total-blue  { color: #60A5FA; font-weight: 700; }
+    .badge-p { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; border-radius: 4px; padding: 2px 8px; text-transform: uppercase; letter-spacing: .04em; }
+    .bp-meta   { background: var(--meta-light);   color: var(--meta); }
+    .bp-google { background: var(--google-light); color: var(--google); }
+    .projection-note { margin-top: 12px; font-size: 13px; color: var(--slate-500); display: flex; align-items: flex-start; gap: 8px; line-height: 1.55; }
+
+    /* ── ROAS BOX ── */
+    .roas-box { background: linear-gradient(135deg, #1B4FD8 0%, #0284C7 100%); border-radius: var(--radius); padding: 52px 36px; text-align: center; color: white; margin-top: 48px; }
+    .roas-box strong { display: block; font-size: 80px; font-weight: 700; line-height: 1; letter-spacing: -.04em; }
+    .roas-box p { font-size: 18px; opacity: .9; margin-top: 14px; line-height: 1.5; }
+    .roas-box small { font-size: 13px; opacity: .55; margin-top: 10px; display: block; }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .highlight-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: var(--radius); padding: 24px 22px; position: relative; overflow: hidden; }
+    .highlight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
+    .highlight-card.green::before { background: var(--green); }
+    .highlight-card.amber::before { background: var(--amber); }
+    .highlight-card strong { display: block; font-size: 34px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 8px; }
+    .highlight-card.green strong { color: var(--green); }
+    .highlight-card.amber strong { color: var(--amber); }
+    .highlight-card p { font-size: 13px; color: var(--slate-500); line-height: 1.55; }
+
+    /* ── ALERTAS ── */
+    .alert-list { display: flex; flex-direction: column; gap: 16px; }
+    .alert-item { display: flex; gap: 16px; align-items: flex-start; background: var(--white); border: 1px solid var(--slate-300); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: 20px 22px; }
+    .alert-item.critical { border-left-color: var(--red); }
+    .alert-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .alert-item.critical .alert-icon { background: var(--red-light); }
+    .alert-item:not(.critical) .alert-icon { background: var(--amber-light); }
+    .alert-icon svg { width: 17px; height: 17px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .alert-item.critical .alert-icon svg { stroke: var(--red); }
+    .alert-item:not(.critical) .alert-icon svg { stroke: var(--amber); }
+    .alert-body { flex: 1; }
+    .alert-plat { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .04em; }
+    .alert-body strong { display: block; font-size: 15px; font-weight: 700; color: var(--slate-900); margin-bottom: 5px; }
+    .alert-body span { font-size: 14px; color: var(--slate-500); line-height: 1.6; }
+    .info-box { background: var(--green-light); border: 1px solid var(--green-border, #A7F3D0); border-radius: var(--radius-sm); padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; margin-top: 16px; }
+    .info-box svg { stroke: var(--green); width: 17px; height: 17px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+    .info-box span { font-size: 13px; color: var(--green); line-height: 1.55; }
+
+    /* ── KEYWORDS TABLE ── */
+    .kw-wrap { border: 1px solid var(--slate-300); border-radius: var(--radius); overflow: hidden; }
+    .kw-table { width: 100%; border-collapse: collapse; }
+    .kw-table th { font-size: 11px; font-weight: 700; color: var(--slate-500); text-transform: uppercase; letter-spacing: .06em; padding: 10px 16px; background: var(--slate-100); text-align: left; }
+    .kw-table th:not(:first-child) { text-align: right; }
+    .kw-table td { padding: 12px 16px; font-size: 14px; border-top: 1px solid var(--slate-300); }
+    .kw-table td:not(:first-child) { text-align: right; color: var(--slate-500); font-weight: 500; }
+    .kw-name { font-weight: 600; color: var(--slate-900); }
+    .kw-best { color: var(--green); font-weight: 700; }
+    .kw-badge { display: inline-block; background: var(--green-light); color: var(--green); font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; }
+
+    /* ── CHECKLIST ── */
+    .checklist { display: flex; flex-direction: column; gap: 12px; }
+    .check-item { display: flex; gap: 16px; align-items: center; background: var(--white); border: 1px solid var(--slate-300); border-radius: var(--radius-sm); padding: 18px 20px; transition: border-color .2s; }
+    .check-item:hover { border-color: var(--blue-border); cursor: default; }
+    .check-num { width: 32px; height: 32px; background: var(--blue-light); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .check-text { flex: 1; }
+    .check-text strong { display: block; font-size: 15px; font-weight: 700; color: var(--slate-900); margin-bottom: 3px; }
+    .check-text span { font-size: 13px; color: var(--slate-500); line-height: 1.5; }
+    .priority { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 99px; flex-shrink: 0; text-transform: uppercase; letter-spacing: .04em; }
+    .p-high { background: var(--red-light);   color: var(--red); }
+    .p-med  { background: var(--amber-light); color: var(--amber); }
+    .p-low  { background: var(--green-light); color: var(--green); }
+    .p-opt  { background: var(--slate-100);   color: var(--slate-500); }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--slate-900); padding: 10px 0; }
+    .topbar .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .topbar-brand { font-size: 12px; font-weight: 600; color: var(--slate-300); letter-spacing: .02em; }
+    .topbar-brand span { color: var(--slate-500); font-weight: 400; }
+    .topbar-tag { font-size: 11px; color: var(--slate-500); display: flex; align-items: center; gap: 6px; }
+    .topbar-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; display: inline-block; }
+
+    /* ── HERO LOGO ── */
+    .hero-logo { max-height: 52px; width: auto; max-width: 220px; object-fit: contain; margin-bottom: 28px; display: block; margin-left: auto; margin-right: auto; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--slate-900); color: var(--slate-500); padding: 48px 0; text-align: center; }
+    .footer-plats { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-plat { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--slate-400); }
+    footer p { font-size: 13px; line-height: 1.75; max-width: 600px; margin: 0 auto; }
+    footer strong { color: var(--slate-300); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      section { padding: 52px 0; }
+      .campaign-grid, .audience-two-col, .highlights-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 24px; }
+      .steps::before { display: none; }
+      .step { flex-direction: row; text-align: left; gap: 16px; }
+      .step-num { margin-bottom: 0; }
+      .hero-meta { gap: 22px; }
+      .hero-divider { display: none; }
+      .roas-box strong { font-size: 60px; }
+      .roas-box { padding: 36px 20px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+    /* ── LOCK ── */
+    #page-content { transition: filter .3s; }
+    body.locked #page-content { filter: blur(7px); pointer-events: none; user-select: none; }
+
+    #lock-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+    .lock-card {
+      background: var(--white); border-radius: 16px;
+      padding: 48px 40px; width: 90%; max-width: 380px;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.28);
+    }
+    .lock-logo { max-height: 44px; width: auto; max-width: 180px; object-fit: contain; margin: 0 auto 24px; display: block; }
+    .lock-title { font-size: 18px; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; }
+    .lock-sub { font-size: 13px; color: var(--slate-500); margin-bottom: 28px; line-height: 1.5; }
+    .lock-input-wrap { position: relative; margin-bottom: 14px; }
+    .lock-input {
+      width: 100%; padding: 13px 44px 13px 16px;
+      border: 1.5px solid var(--slate-300); border-radius: var(--radius-sm);
+      font-size: 15px; font-family: inherit; color: var(--slate-900);
+      outline: none; transition: border-color .2s;
+      letter-spacing: .12em;
+    }
+    .lock-input:focus { border-color: var(--blue); }
+    .lock-input.shake { animation: shake .35s ease; border-color: var(--red); }
+    .lock-eye {
+      position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; padding: 4px;
+      color: var(--slate-400); display: flex; align-items: center;
+    }
+    .lock-btn {
+      width: 100%; padding: 13px;
+      background: var(--blue); color: var(--white);
+      border: none; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: background .2s;
+    }
+    .lock-btn:hover { background: var(--blue-mid); }
+    .lock-error {
+      font-size: 13px; color: var(--red); margin-top: 10px;
+      min-height: 18px; display: block;
+    }
+    .lock-footer { font-size: 11px; color: var(--slate-400); margin-top: 24px; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-7px); }
+      40%      { transform: translateX(7px); }
+      60%      { transform: translateX(-5px); }
+      80%      { transform: translateX(5px); }
+    }
+  </style>
+</head>
+<body class="locked">
+
+<div id="lock-overlay">
+  <div class="lock-card">
+    <img src="https://guterresesombrio.adv.br/wp-content/uploads/2022/05/logo.png" alt="Guterres &amp; Sombrio" class="lock-logo">
+    <div class="lock-title">Relatório protegido</div>
+    <div class="lock-sub">Digite a senha para acessar o relatório de desempenho de maio 2026.</div>
+    <div class="lock-input-wrap">
+      <input id="pwd-input" class="lock-input" type="password" placeholder="Senha de acesso" autocomplete="off" autofocus>
+      <button class="lock-eye" id="eye-btn" tabindex="-1" aria-label="Mostrar senha">
+        <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <button class="lock-btn" id="unlock-btn">Acessar relatório</button>
+    <span class="lock-error" id="lock-error"></span>
+    <div class="lock-footer">Ampler Marketing · Inteligência Comercial e I.A</div>
+  </div>
+</div>
+
+<div id="page-content">
+
+<!-- ══════════════════════════════════════
+     TOPBAR
+════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-brand">Ampler Marketing <span>· Inteligência Comercial e I.A</span></div>
+    <div class="topbar-tag"><span class="topbar-dot"></span> Relatório confidencial · Maio 2026</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <img src="https://guterresesombrio.adv.br/wp-content/uploads/2022/05/logo.png" alt="Guterres &amp; Sombrio Advogados" class="hero-logo">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      Relatório de Desempenho · Maio 2026
+    </div>
+    <h1>Campanhas de maio: resultado concreto.</h1>
+    <p class="hero-sub">Guterres &amp; Sombrio Advogados investiu em dois canais digitais e fechou 8 contratos novos durante o mês. Aqui está o que aconteceu, em linguagem clara.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <strong>R$54.000</strong>
+        <span>Faturamento gerado</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item">
+        <strong>220</strong>
+        <span>Leads no Meta</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item">
+        <strong>8</strong>
+        <span>Contratos fechados</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item">
+        <strong>R$2.731</strong>
+        <span>Total investido</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     AS PLATAFORMAS
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">As plataformas</div>
+    <h2 class="section-title">Dois canais, papéis complementares</h2>
+    <p class="section-sub">O Meta Ads gerou contatos e fechamentos; o Google ampliou a presença da marca e trouxe visitantes qualificados ao site a custo muito baixo.</p>
+    <div class="campaign-grid">
+
+      <!-- META -->
+      <div class="campaign-card meta">
+        <div class="campaign-card-tag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Meta Ads
+        </div>
+        <h3>Geração de Leads · Facebook &amp; Instagram</h3>
+        <div class="campaign-row">
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Investimento</div>
+              <div class="campaign-item-value">~R$ 2.158 <small>(220 leads × R$9,81)</small></div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Leads gerados</div>
+              <div class="campaign-item-value">220 conversas iniciadas</div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Taxa de conversão</div>
+              <div class="campaign-item-value">3,6% dos leads viraram contratos</div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Resultado</div>
+              <div class="campaign-item-value">8 contratos · R$ 54.000 gerados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE -->
+      <div class="campaign-card google">
+        <div class="campaign-card-tag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Google Ads
+        </div>
+        <h3>Previdência 2025 · Pesquisa + Display</h3>
+        <div class="campaign-row">
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Investimento</div>
+              <div class="campaign-item-value">R$ 572,53 em 25 dias</div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Visitas ao site</div>
+              <div class="campaign-item-value">1.236 cliques no anúncio</div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Taxa de clique (CTR)</div>
+              <div class="campaign-item-value">4,28% · acima da média do setor</div>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-item-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <div class="campaign-item-label">Custo por clique</div>
+              <div class="campaign-item-value">R$ 0,46 médio (muito eficiente)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMO FUNCIONA
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">O fluxo</div>
+    <h2 class="section-title">Do anúncio ao contrato assinado</h2>
+    <p class="section-sub">Entender cada etapa ajuda a identificar onde estão as maiores oportunidades de melhoria.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Anúncio exibido</div>
+        <div class="step-desc">A pessoa vê o anúncio no Google enquanto pesquisa, ou no Facebook/Instagram enquanto navega.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Clique ou formulário</div>
+        <div class="step-desc">No Google, ela vai ao site. No Meta, preenche um formulário diretamente no anúncio sem sair do app.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Contato com o escritório</div>
+        <div class="step-desc">O escritório recebe o contato e faz a triagem — conversa inicial para entender a situação da pessoa.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Contrato fechado</div>
+        <div class="step-desc">A pessoa vira cliente. Em maio, foram 8 contratos novos gerados a partir dos anúncios.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     RESULTADO CONSOLIDADO
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Resultado de maio</div>
+    <h2 class="section-title">Os números lado a lado</h2>
+    <p class="section-sub">Uma comparação direta do que cada plataforma entregou — e quanto custou para chegar lá.</p>
+
+    <table class="projection-table">
+      <thead>
+        <tr>
+          <th>Plataforma</th>
+          <th style="text-align:right">Investido</th>
+          <th style="text-align:right">Leads / Cliques</th>
+          <th style="text-align:right">Custo unitário</th>
+          <th style="text-align:right">Retorno direto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="badge-p bp-meta">Meta Ads</span><br>
+            <span style="font-size:12px;color:var(--slate-500);font-weight:400;">Facebook &amp; Instagram</span>
+          </td>
+          <td style="text-align:right" class="val-blue">R$ 2.158</td>
+          <td style="text-align:right;font-weight:600;">220 leads</td>
+          <td style="text-align:right;font-weight:600;">R$ 9,81 / lead</td>
+          <td style="text-align:right" class="val-green">R$ 54.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="badge-p bp-google">Google Ads</span><br>
+            <span style="font-size:12px;color:var(--slate-500);font-weight:400;">Pesquisa + Display</span>
+          </td>
+          <td style="text-align:right" class="val-blue">R$ 573</td>
+          <td style="text-align:right;font-weight:600;">1.236 cliques</td>
+          <td style="text-align:right;font-weight:600;">R$ 0,46 / clique</td>
+          <td style="text-align:right" class="val-amber">Não rastreado ①</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total geral</td>
+          <td style="text-align:right" class="val-total-blue">R$ 2.731</td>
+          <td style="text-align:right;color:var(--slate-400);">1.456 interações</td>
+          <td></td>
+          <td style="text-align:right" class="val-total-green">R$ 54.000 confirmado</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="projection-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      ① O Google leva visitantes ao site, mas ainda não está configurado para registrar quando alguém liga ou envia mensagem. Isso não significa que o Google não traz clientes — significa que não conseguimos medir ainda. Essa é a primeira ação a corrigir em junho.
+    </div>
+
+    <div class="roas-box">
+      <strong>25×</strong>
+      <p>Para cada R$ 1 investido no Meta Ads,<br>o escritório recebeu R$ 25 em novos contratos.</p>
+      <small>8 contratos fechados × ticket médio R$ 7.000 ÷ R$ 2.158 investido no Meta</small>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     O PÚBLICO (GOOGLE DEMOGRAPHICS)
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">O público</div>
+    <h2 class="section-title">Quem está buscando sobre previdência</h2>
+    <p class="section-sub">Os dados do Google revelam com precisão o perfil de quem viu e clicou nos anúncios — e ele é exatamente o público certo para o escritório.</p>
+    <div class="audience-two-col">
+      <div>
+        <p class="demo-section-title">Faixa etária dos visitantes</p>
+        <div class="demo-bars">
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">55–64</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:100%"></div></div>
+            <span class="demo-bar-pct">27,8%</span>
+          </div>
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">45–54</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:77%"></div></div>
+            <span class="demo-bar-pct">21,5%</span>
+          </div>
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">35–44</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:59%"></div></div>
+            <span class="demo-bar-pct">16,3%</span>
+          </div>
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">25–34</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:55%"></div></div>
+            <span class="demo-bar-pct">15,4%</span>
+          </div>
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">65+</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:51%"></div></div>
+            <span class="demo-bar-pct">14,1%</span>
+          </div>
+          <div class="demo-bar-row">
+            <span class="demo-bar-label">18–24</span>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:18%"></div></div>
+            <span class="demo-bar-pct">5,1%</span>
+          </div>
+        </div>
+        <div class="demo-note">
+          63% do público tem entre 45 e 64 anos — exatamente a faixa que mais precisa de orientação previdenciária e tem maior propensão a contratar.
+        </div>
+      </div>
+      <div>
+        <div class="stat-grid">
+          <div class="stat-card hi">
+            <strong>57%</strong>
+            <span>mulheres entre os visitantes</span>
+          </div>
+          <div class="stat-card">
+            <strong>43%</strong>
+            <span>homens</span>
+          </div>
+          <div class="stat-card hi">
+            <strong>92%</strong>
+            <span>vieram pelo celular</span>
+          </div>
+          <div class="stat-card">
+            <strong>08h</strong>
+            <span>horário de maior busca</span>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--slate-500);margin-top:18px;line-height:1.65;">
+          O pico de pesquisas acontece às 8h da manhã — as pessoas chegam ao trabalho e imediatamente pesquisam sobre sua situação previdenciária. O escritório está presente exatamente nesse momento.
+        </p>
+        <p style="font-size:13px;color:var(--slate-500);margin-top:12px;line-height:1.65;">
+          O perfil feminino majoritário faz sentido: mulheres têm regras de aposentadoria mais complexas e buscam mais orientação sobre tempo de contribuição e idade mínima.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     GOOGLE EM DETALHE
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Google Ads em detalhe</div>
+    <h2 class="section-title">As palavras que mais geraram resultado</h2>
+    <p class="section-sub">No Google, o anúncio aparece quando alguém pesquisa um termo específico. Veja quais termos trouxeram mais cliques — e qual teve a melhor performance.</p>
+
+    <div class="kw-wrap" style="margin-bottom:40px;">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Palavra-chave</th>
+            <th>Investido</th>
+            <th>Cliques</th>
+            <th>Taxa de clique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="kw-name">advogado previdenciário</td>
+            <td>R$ 245,57</td>
+            <td>485</td>
+            <td style="color:var(--blue);font-weight:600;">4,73%</td>
+          </tr>
+          <tr>
+            <td class="kw-name">aposentadoria por idade <span class="kw-badge">melhor CTR</span></td>
+            <td>R$ 116,15</td>
+            <td>194</td>
+            <td class="kw-best">5,61%</td>
+          </tr>
+          <tr>
+            <td class="kw-name">advogado previdenciário (variação)</td>
+            <td>R$ 71,29</td>
+            <td>117</td>
+            <td style="color:var(--blue);font-weight:600;">4,46%</td>
+          </tr>
+          <tr>
+            <td class="kw-name">previdência social</td>
+            <td>R$ 15,15</td>
+            <td>20</td>
+            <td>1,80%</td>
+          </tr>
+          <tr>
+            <td class="kw-name">planejamento previdenciário</td>
+            <td>R$ 3,29</td>
+            <td>11</td>
+            <td>2,73%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+      <div>
+        <h3 style="font-size:17px;font-weight:700;color:var(--slate-900);margin-bottom:12px;">O que as pessoas estão pesquisando</h3>
+        <p style="font-size:14px;color:var(--slate-500);line-height:1.7;margin-bottom:16px;">As buscas mais frequentes mostram um público em fase <strong style="color:var(--slate-700)">informacional</strong> — pessoas que ainda estão entendendo os próprios direitos:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="background:var(--slate-100);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--slate-700);">"com quantos anos a mulher se aposenta"</div>
+          <div style="background:var(--slate-100);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--slate-700);">"aposentadoria por idade mulher"</div>
+          <div style="background:var(--slate-100);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--slate-700);">"quantos anos de contribuição para se aposentar"</div>
+          <div style="background:var(--slate-100);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--slate-700);">"lei 142 aposentadoria"</div>
+        </div>
+        <div class="info-box">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Sinal positivo:</strong> o nome "Guterres e Sombrio Advogados" apareceu 16 vezes nas buscas e gerou 12 cliques. Pessoas pesquisando pelo nome do escritório já demonstram intenção e reconhecimento de marca.</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:17px;font-weight:700;color:var(--slate-900);margin-bottom:16px;">Como o anúncio aparece no Google</h3>
+        <div class="google-mockup">
+          <div class="gm-ad-badge">Anúncio</div>
+          <div class="gm-url">guterresesombrio.adv.br/previdenciario</div>
+          <div class="gm-title">Advogado Previdenciário — Guterres &amp; Sombrio</div>
+          <div class="gm-desc">Especialistas em aposentadoria, benefícios do INSS e planejamento previdenciário. Avaliação do seu caso. Atendimento em Curitiba e região.</div>
+          <div class="gm-sitelinks">
+            <span class="gm-sitelink">Aposentadoria por Idade</span>
+            <span class="gm-sitelink">Auxílio-Doença</span>
+            <span class="gm-sitelink">Fale Conosco</span>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--slate-400);margin-top:10px;">Representação ilustrativa do anúncio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PONTOS FORTES
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Pontos fortes</div>
+    <h2 class="section-title">O que funcionou muito bem</h2>
+    <p class="section-sub">Resultados que merecem destaque e devem ser mantidos ou ampliados no próximo mês.</p>
+    <div class="highlights-grid">
+      <div class="highlight-card green">
+        <strong>25×</strong>
+        <p>Retorno sobre investimento no Meta. Cada real gerou R$25 em contratos fechados no mês.</p>
+      </div>
+      <div class="highlight-card">
+        <strong>R$ 9,81</strong>
+        <p>Custo por lead no Meta. A média do setor jurídico fica acima de R$40. Aqui ficou muito abaixo.</p>
+      </div>
+      <div class="highlight-card green">
+        <strong>4,28%</strong>
+        <p>Taxa de clique no Google. Mais que o dobro da média do mercado jurídico, que gira em torno de 2%.</p>
+      </div>
+      <div class="highlight-card amber">
+        <strong>R$ 0,46</strong>
+        <p>Custo por clique no Google. Cada visita ao site custou menos de 50 centavos — eficiência alta.</p>
+      </div>
+      <div class="highlight-card">
+        <strong>+90%</strong>
+        <p>Crescimento de cliques no Google comparado ao período anterior. De 652 para 1.236 visitas.</p>
+      </div>
+      <div class="highlight-card green">
+        <strong>3,6%</strong>
+        <p>Com os mesmos 220 leads de maio, subir de 3,6% para 5% significaria 11 contratos — R$ 21.000 a mais sem investir um centavo adicional em anúncios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ALERTAS
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Pontos de atenção</div>
+    <h2 class="section-title">O que precisa de ajuste</h2>
+    <p class="section-sub">Três oportunidades de melhoria identificadas — todas com potencial de resultado direto a partir de junho.</p>
+    <div class="alert-list">
+
+<div class="alert-item">
+        <div class="alert-icon">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="alert-body">
+          <span class="alert-plat bp-google" style="background:var(--google-light);color:var(--google);">Google Ads</span>
+          <strong>~R$ 5 gastos em buscas sem relação com o escritório</strong>
+          <span>Uma parcela pequena do orçamento foi para pesquisas como "mps" (empresa de outro setor) e "inss cerca de mi" (pesquisa em espanhol). Uma lista de palavras bloqueadas elimina esse desperdício. O restante das buscas — incluindo o nome do escritório — são tráfego legítimo.</span>
+        </div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-icon">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="alert-body">
+          <span class="alert-plat bp-google" style="background:var(--google-light);color:var(--google);">Google Ads</span>
+          <strong>Pontuação de otimização em 74,4% — Google indica melhorias possíveis</strong>
+          <span>O próprio Google sinaliza que a campanha tem margem de melhoria. Parte das recomendações envolve adicionar extensões de anúncio (endereço, telefone, avaliações) e refinar os lances. São ajustes técnicos que podem aumentar os cliques sem aumentar o orçamento.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PRÓXIMOS PASSOS
+════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Para junho</div>
+    <h2 class="section-title">Quatro ações prioritárias</h2>
+    <p class="section-sub">Em ordem de impacto esperado. A primeira é opcional — mas com ROAS de 25×, o argumento fala por si.</p>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-num">1</div>
+        <div class="check-text">
+          <strong>Escalar o Meta Ads — ROAS de 25× justifica aumentar o orçamento</strong>
+          <span>Com CPL de R$9,81 e R$54.000 gerados em contratos, ampliar o investimento no Meta é a decisão de maior retorno disponível agora.</span>
+        </div>
+        <span class="priority p-opt">Opcional</span>
+      </div>
+      <div class="check-item">
+        <div class="check-num">2</div>
+        <div class="check-text">
+          <strong>Criar lista de palavras bloqueadas no Google</strong>
+          <span>Impedir que o anúncio apareça em buscas de outros setores e termos em outros idiomas — eliminando o pequeno desperdício identificado.</span>
+        </div>
+        <span class="priority p-med">Importante</span>
+      </div>
+      <div class="check-item">
+        <div class="check-num">3</div>
+        <div class="check-text">
+          <strong>Implementar as extensões de anúncio sugeridas pelo Google</strong>
+          <span>Adicionar extensões de chamada (telefone), localização e avaliações ao anúncio. Não aumenta o custo — pode aumentar a taxa de clique em 10 a 20%.</span>
+        </div>
+        <span class="priority p-med">Importante</span>
+      </div>
+      <div class="check-item">
+        <div class="check-num">4</div>
+        <div class="check-text">
+          <strong>Criar uma página focada em "aposentadoria por idade"</strong>
+          <span>É a busca com melhor taxa de clique no Google (5,61%). Uma página respondendo diretamente essa dúvida — com um CTA claro — pode converter muito mais visitantes em contatos.</span>
+        </div>
+        <span class="priority p-low">Crescimento</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-plats">
+      <span class="footer-plat">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Meta Ads · Facebook &amp; Instagram
+      </span>
+      <span class="footer-plat">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Google Ads · Pesquisa + Display
+      </span>
+    </div>
+    <p>
+      Relatório preparado para <strong>Guterres &amp; Sombrio Advogados</strong> · <a href="https://guterresesombrio.adv.br/" style="color:var(--slate-400);">guterresesombrio.adv.br</a><br>
+      Período de referência: <strong>1 a 29 de maio de 2026</strong>.<br>
+      Dados extraídos diretamente das plataformas Meta Ads e Google Ads Campaign Manager. Os valores de faturamento são baseados nos contratos informados pelo escritório (8 contratos × ticket médio R$7.000). O rastreamento de conversão do Google ainda não está instalado — os resultados reais podem ser superiores aos apresentados.<br>
+      <strong>Documento confidencial · uso interno</strong>
+    </p>
+  </div>
+</footer>
+
+</div><!-- #page-content -->
+
+<script>
+  const PWD = 'gsampler26';
+  const overlay = document.getElementById('lock-overlay');
+  const input   = document.getElementById('pwd-input');
+  const btn     = document.getElementById('unlock-btn');
+  const errMsg  = document.getElementById('lock-error');
+  const eyeBtn  = document.getElementById('eye-btn');
+  const eyeIcon = document.getElementById('eye-icon');
+
+  function unlock() {
+    if (input.value === PWD) {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity .3s';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+      document.body.classList.remove('locked');
+    } else {
+      input.classList.remove('shake');
+      void input.offsetWidth;
+      input.classList.add('shake');
+      errMsg.textContent = 'Senha incorreta. Tente novamente.';
+      input.value = '';
+      input.focus();
+      setTimeout(() => { errMsg.textContent = ''; }, 3000);
+    }
+  }
+
+  btn.addEventListener('click', unlock);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+
+  eyeBtn.addEventListener('click', () => {
+    const visible = input.type === 'text';
+    input.type = visible ? 'password' : 'text';
+    eyeIcon.innerHTML = visible
+      ? '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'
+      : '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  });
+</script>
+</body>
+</html>
